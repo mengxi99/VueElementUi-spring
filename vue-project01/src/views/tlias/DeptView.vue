@@ -32,10 +32,10 @@
                             </el-table-column>
                             <el-table-column label="操作">
                                 <template slot-scope="scope">
-                                    <el-button size="mini" @click="handleEdit(scope.row.id)">编辑</el-button>
+                                    <el-button size="mini"  @click="hqId(scope.row.id)">编辑</el-button>
                                     <el-dialog title="修改门派" :visible.sync="dialogFormVisible">
                                         <el-form :model="form">
-                                            <el-form-item label="门派" :label-width="formLabelWidth">
+                                            <el-form-item  label="门派" :label-width="formLabelWidth">
                                                 <el-input v-model="form.name" autocomplete="off"></el-input>
                                             </el-form-item>
                                             <!-- <el-form-item label="最后操作时间" :label-width="formLabelWidth">
@@ -46,7 +46,7 @@
                                         </el-form>
                                         <div slot="footer" class="dialog-footer">
                                             <el-button @click="dialogFormVisible = false">取 消</el-button>
-                                            <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                                            <el-button type="primary" @click="handleEdit()">确 定</el-button>
                                         </div>
                                     </el-dialog>
 
@@ -72,9 +72,13 @@ export default {
             dialogTableVisible: false,
             dialogFormVisible: false,
             formLabelWidth: "120px",
+            ids:"",
             form: {
                 name: "",
                 
+            },
+            changeMp:{
+                name:""
             }
 
 
@@ -95,6 +99,7 @@ export default {
             })
         },
         sendDelId(id) {
+            // alert(id)
             axios({
                 url: "http://localhost:8080/delDeptId",
                 method: "get",
@@ -109,16 +114,33 @@ export default {
         },
 
         //编辑
-        handleEdit(id) {
-            this.dialogFormVisible = true
+        hqId(id){
+
             // alert(id)
-            console.log(id)
+            this.dialogFormVisible=true
+            this.ids=id
+        },
+        handleEdit() {
+            // this.changeMp.name=""
+            this.dialogFormVisible=false
+            // alert(id)
+            // console.log(id)
+            console.log(this.form.name)
+            // this.changeMp.name=this.form.name
+            // this.form.name=""
             axios({
                 url: "http://localhost:8080/updateDept",
                 method: "get",
                 params: {
-
+                    id:this.ids,
+                    name:this.form.name
                 }
+            }).then((result)=>{
+                console.log(result)
+                this.tableData = result.data.data;
+                this.sendUrl()
+                this.form.name=""
+                // this.changeMp.name=""
             })
         },
         handleDelete(id) {

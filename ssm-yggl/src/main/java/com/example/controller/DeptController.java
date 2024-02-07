@@ -38,7 +38,7 @@ public class DeptController {
     @GetMapping("/updateDept")
     public int updateDept(Dept dept){
         int i=deptServiceImpl.update(dept);
-        return 1;
+        return i;
     }
 
 }

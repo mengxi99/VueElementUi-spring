@@ -43,6 +43,12 @@ public class EmpController {
         return empList;
 
     }
+    //删除员工
+    @GetMapping("delEmpId")
+    public int delEmpId(Integer id){
+        int i=empServiceImpl.delEmpId(id);
+        return i;
+    }
 
     //新增员工
     @GetMapping("/addEmp")
@@ -53,6 +59,14 @@ public class EmpController {
         int i=empServiceImpl.addEmp(emp);
         System.out.println("i = " + i);
 
+        return i;
+    }
+
+
+    //更新员工
+    @GetMapping("/updateEmp")
+    public int updateEmp(Emp emp){
+        int i=empServiceImpl.updateEmp(emp);
         return i;
     }
 }

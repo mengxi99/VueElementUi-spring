@@ -1,10 +1,7 @@
 package com.example.dao;
 
 import com.example.pojo.Emp;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -38,4 +35,8 @@ public interface EmpDao {
 
     @Insert("insert into emp(id,username,name,gender,image,job,entrydate,deptId,createTime,updateTime) values(null,#{username},#{name},#{gender},null,#{job},null,#{deptId},null,null)")
     int addEmp(Emp emp);
+    @Delete("delete from emp where id=#{id}")
+    int delEmpId(Integer id);
+    @Update("update emp set id=id,name=#{name},image=#{image},job=#{job},deptId=#{deptId} where id=#{id}")
+    int updateEmp(Emp emp);
 }

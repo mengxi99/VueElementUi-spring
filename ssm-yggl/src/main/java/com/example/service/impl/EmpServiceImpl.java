@@ -40,4 +40,12 @@ public class EmpServiceImpl {
 //        emp.setUpdateTime("2024-02-07");
         return empDao.addEmp(emp);
     }
+
+    public int delEmpId(Integer id) {
+        return empDao.delEmpId(id);
+    }
+
+    public int updateEmp(Emp emp) {
+        return empDao.updateEmp(emp);
+    }
 }

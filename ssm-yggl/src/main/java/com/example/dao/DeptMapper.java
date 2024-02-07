@@ -17,6 +17,6 @@ public interface DeptMapper {
     List<Dept> list();
     @Delete("delete from dept where id=#{id}")
     int delDeptId(Integer id);
-    @Update("update dept set id=id ,name=#{name},createTime=#{createTime},updateTime=#{updateTime} where id=#{id}")
+    @Update("update dept set id=id ,name=#{name} where id=#{id}")
     int updateDept(Dept dept);
 }
