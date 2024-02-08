@@ -39,4 +39,8 @@ public interface EmpDao {
     int delEmpId(Integer id);
     @Update("update emp set id=id,name=#{name},image=#{image},job=#{job},deptId=#{deptId} where id=#{id}")
     int updateEmp(Emp emp);
+
+
+    @Select("select * from emp where username=#{username} and password=#{password}")
+    Emp login(Emp emp);
 }

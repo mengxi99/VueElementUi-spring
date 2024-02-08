@@ -15,6 +15,12 @@ import java.util.List;
 public class EmpServiceImpl {
     @Autowired
     private EmpDao empDao;
+
+    public Emp login(Emp emp) {
+        return empDao.login(emp);
+    }
+
+
     public List<Emp> list() {
         return empDao.list();
     }

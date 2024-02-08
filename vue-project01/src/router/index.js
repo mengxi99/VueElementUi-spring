@@ -7,7 +7,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect:'/dept'
+    redirect:'/login'
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/tlias/LoginView.vue')
   },
   {
     path: '/dept',
